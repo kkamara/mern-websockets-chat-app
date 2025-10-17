@@ -4,7 +4,7 @@
 
 # mern-websockets-chat-app
 
-
+This repository follows RoadsideCoder's course MERN Stack Chat App with Socket.IO Tutorial at https://www.youtube.com/playlist?list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf .
 
 * [Installation](#installation)
 
