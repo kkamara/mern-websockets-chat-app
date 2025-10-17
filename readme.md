@@ -21,6 +21,8 @@ This repository follows RoadsideCoder's course MERN Stack Chat App with Socket.I
 * [NodeJS](https://nodejs.org/en/).
 
 ```bash
+# Create our environment file.
+cp .env.example .env
 # Install Yarn globally.
 npm install --global yarn
 # Install our app dependencies.
