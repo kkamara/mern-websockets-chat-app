@@ -6,11 +6,32 @@
 
 
 
+* [Installation](#installation)
+
+* [Usage](#usage)
+
 * [Misc.](#misc)
 
 * [Contributing](#contributing)
 
 * [License](#license)
+
+## Installation
+
+* [NodeJS](https://nodejs.org/en/).
+
+```bash
+# Install Yarn globally.
+npm install --global yarn
+# Install our app dependencies.
+yarn
+```
+
+## Usage
+
+```bash
+yarn start
+```
 
 ## Misc.
 
