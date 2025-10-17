@@ -1,14 +1,14 @@
 {
-  "name": "mern-chat-app",
+  "name": "mern-websockets-chat-app",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/kkamara/mern-chat-app#readme",
+  "homepage": "https://github.com/kkamara/mern-websockets-chat-app#readme",
   "bugs": {
-    "url": "https://github.com/kkamara/mern-chat-app/issues"
+    "url": "https://github.com/kkamara/mern-websockets-chat-app/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kkamara/mern-chat-app.git"
+    "url": "git+https://github.com/kkamara/mern-websockets-chat-app.git"
   },
   "license": "BSD-3-Clause",
   "author": "Kelvin Kamara",

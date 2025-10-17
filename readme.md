@@ -2,7 +2,7 @@
 
 ![nodejs-reactjs-boilerplate2.png](https://github.com/kkamara/useful/blob/main/nodejs-reactjs-boilerplate2.png?raw=true)
 
-# mern-chat-app
+# mern-websockets-chat-app
 
 
 
