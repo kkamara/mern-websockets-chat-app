@@ -6,6 +6,9 @@
 
 This repository follows RoadsideCoder's course MERN Stack Chat App with Socket.IO Tutorial at https://www.youtube.com/playlist?list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf .
 
+
+* [Using Postman?](#postman)
+
 * [Installation](#installation)
 
 * [Usage](#usage)
@@ -15,6 +18,15 @@ This repository follows RoadsideCoder's course MERN Stack Chat App with Socket.I
 * [Contributing](#contributing)
 
 * [License](#license)
+
+<a name="postman"></a>
+## Using Postman?
+
+[Get Postman HTTP client](https://www.postman.com).
+
+[Postman API Collection for MERN WebSockets Chat App](https://github.com/kkamara/mern-websockets-chat-app/blob/main/mern-websockets-chat-app.postman_collection.json).
+
+[Postman API Environment for MERN WebSockets Chat App](https://github.com/kkamara/mern-websockets-chat-app/blob/main/mern-websockets-chat-app.postman_environment.json).
 
 ## Installation
 
