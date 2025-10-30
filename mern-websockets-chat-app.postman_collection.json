@@ -230,6 +230,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Rename the Group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chatId\": \"690392cdeb90c8a6c8119c96\",\r\n    \"chatName\": \"Test Group Updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/chat/rename",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"chat",
+								"rename"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
