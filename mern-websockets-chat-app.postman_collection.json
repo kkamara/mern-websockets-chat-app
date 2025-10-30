@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Authentication",
+			"name": "Users",
 			"item": [
 				{
 					"name": "Registration",
@@ -80,10 +80,41 @@
 			]
 		},
 		{
-			"name": "New Request",
+			"name": "Search User",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDIyOTcxZTc0YmU0NTM2YmQ4M2NkZSIsImlhdCI6MTc2MTgzNTcyNywiZXhwIjoxNzY0NDI3NzI3fQ.tLM0ow_usf_snBcNjYv9AGF05rt_wA7tJVxnCKzQgQo",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/user?search=",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"user"
+					],
+					"query": [
+						{
+							"key": "lastName",
+							"value": "doe",
+							"disabled": true
+						},
+						{
+							"key": "search",
+							"value": ""
+						}
+					]
+				}
 			},
 			"response": []
 		}
