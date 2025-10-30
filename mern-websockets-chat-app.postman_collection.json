@@ -192,6 +192,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Create a Group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"First Group\",\r\n    \"users\": \"[\\\"690243bfd8aca891e238eca7\\\",\\\"69021e29ee19902e30275b9c\\\"]\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/chat/group",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"chat",
+								"group"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
