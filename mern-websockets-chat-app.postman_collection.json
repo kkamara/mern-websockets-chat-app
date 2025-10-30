@@ -123,6 +123,43 @@
 			"item": [
 				{
 					"name": "Create or Access a One on One Chat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"690243bfd8aca891e238eca7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/chat",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"chat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetching Chats",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -141,12 +178,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\": \"690243bfd8aca891e238eca7\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n    \"userId\": \"690243bfd8aca891e238eca7\"\r\n}"
 						},
 						"url": {
 							"raw": "{{URL}}/api/chat",
