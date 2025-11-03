@@ -25,7 +25,7 @@ const SideDrawer = () => {
 
   return (
     <Box
-      d="flex"
+      display="flex"
       justifyContent="space-between"
       alignItems="center"
       bg="white"
@@ -40,7 +40,7 @@ const SideDrawer = () => {
       >
         <Button variant="ghost">
           <i className="fas fa-search"></i>
-          <Text d={{ base: "none", md: "flex" }} px="4">
+          <Text display={{ base: "none", md: "flex" }} px="4">
             Search User
           </Text>
         </Button>
