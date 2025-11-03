@@ -28,6 +28,7 @@ import { useToast, } from "@chakra-ui/toast";
 import axios from 'axios';
 import ChatLoading from '../ChatLoading';
 import UserListItem from '../UserAvatar/UserListItem';
+import { Spinner, } from '@chakra-ui/spinner';
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -110,6 +111,9 @@ const SideDrawer = () => {
         config,
       );
       
+      if (!chats.find((c) => c._id === data._id)) {
+        setChats([data, ...chats]);
+      }
       setSelectedChat(data);
       setLoadingChat(false);
       onClose();
@@ -209,6 +213,7 @@ const SideDrawer = () => {
                 />
               ))
             )}
+            {loadingChat && <Spinner ml="auto" display="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
