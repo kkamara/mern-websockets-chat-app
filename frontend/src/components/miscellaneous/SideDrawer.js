@@ -11,11 +11,9 @@ import {
   MenuDivider,
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   Input,
 } from '@chakra-ui/react';
 import React, { useState, } from 'react';
