@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { ChatState } from '../Context/ChatProvider';
 import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
@@ -6,6 +6,7 @@ import { getSender, getSenderFull, } from '../config/ChatLogics';
 import ProfileModal from './miscellaneous/ProfileModal';
 import UpdateGroupChatModal from './miscellaneous/UpdateGroupChatModal';
 import axios from 'axios';
+import './styles.css';
 
 const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
   const [messages, setMessages] = useState([]);
@@ -19,6 +20,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
   } = ChatState();
 
   const toast = useToast();
+
+  useEffect(() => {
+    fetchMessages();
+  }, [selectedChat]);
 
   const sendMessage = async e => {
     if (e.key === "Enter" && newMessage) {
@@ -59,6 +64,38 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
     // Typing indicator logic
   };
 
+  const fetchMessages = async () => {
+    if (!selectedChat) {
+      return;
+    }
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      setLoading(true);
+
+      const { data, } = await axios.get(
+        `/api/message/${selectedChat._id}`,
+        config,
+      );
+      
+      setMessages(data);
+      setLoading(false);
+    } catch (error) {
+      toast({
+        title: "Error Occurred!",
+        description: "Failed to Load the Messages",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  }
+
   return (
     <>
       {selectedChat ? (
@@ -91,7 +128,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
                 <UpdateGroupChatModal
                   fetchAgain={fetchAgain}
                   setFetchAgain={setFetchAgain}
-                  // fetchMessages={fetchMessages}
+                  fetchMessages={fetchMessages}
                 />
               </>
             )}
@@ -117,7 +154,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
               />
             ) : (
               <div>
-                {/* Messages */}
+                <div className="messages">
+
+                </div>
               </div>
             )}
 
