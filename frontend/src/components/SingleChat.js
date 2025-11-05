@@ -1,17 +1,63 @@
-import React from 'react';
+import React, { useState, } from 'react';
 import { ChatState } from '../Context/ChatProvider';
-import { Box, IconButton, Text } from '@chakra-ui/react';
+import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { getSender, getSenderFull, } from '../config/ChatLogics';
 import ProfileModal from './miscellaneous/ProfileModal';
 import UpdateGroupChatModal from './miscellaneous/UpdateGroupChatModal';
+import axios from 'axios';
 
 const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [newMessage, setNewMessage] = useState(null);
+
   const {
     user,
     selectedChat,
     setSelectedChat,
   } = ChatState();
+
+  const toast = useToast();
+
+  const sendMessage = async e => {
+    if (e.key === "Enter" && newMessage) {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+        setNewMessage("");
+        const { data, } = await axios.post(
+          "/api/message",
+          {
+            content: newMessage,
+            chatId: selectedChat._id,
+          },
+          config,
+        );
+        
+        setMessages([...messages, data]);
+      } catch (error) {
+        toast({
+          title: "Error Occurred!",
+          description: "Failed to send the Message",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }
+    }
+  };
+
+  const typingHandler = e => {
+    setNewMessage(e.target.value);
+
+    // Typing indicator logic
+  };
 
   return (
     <>
@@ -61,7 +107,34 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
             borderRadius="lg"
             overflowY="hidden"
           >
-            {/* Messages here */}
+            {loading ? (
+              <Spinner
+                size="xl"
+                w={20}
+                h={20}
+                alignSelf="center"
+                margin="auto"
+              />
+            ) : (
+              <div>
+                {/* Messages */}
+              </div>
+            )}
+
+            <FormControl
+              onKeyDown={sendMessage}
+              id="first-name"
+              isRequired
+              mt={3}
+            >
+              <Input
+                variant="filled"
+                bg="#E0E0E0"
+                placeholder="Enter a message.."
+                value={newMessage}
+                onChange={typingHandler}
+              />
+            </FormControl>
           </Box>
         </>
       ) : (
