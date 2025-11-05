@@ -346,6 +346,98 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Sending a New Message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Hello\",\r\n    \"chatId\": \"690a1acab2c09d4834301ec6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/message",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"message"
+							],
+							"query": [
+								{
+									"key": "lastName",
+									"value": "doe",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch All Messages for a Chat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Hello\",\r\n    \"chatId\": \"690a1acab2c09d4834301ec6\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/message/690a1acab2c09d4834301ec6",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"message",
+								"690a1acab2c09d4834301ec6"
+							],
+							"query": [
+								{
+									"key": "lastName",
+									"value": "doe",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
