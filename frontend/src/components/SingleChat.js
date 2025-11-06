@@ -162,7 +162,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
       setMessages(data);
       setLoading(false);
 
-      socket.emit("join chat", selectedChat._id);
+      socket.emit("join chat", {
+        userId: user._id,
+        chatId: selectedChat._id,
+      });
     } catch (error) {
       toast({
         title: "Error Occurred!",
