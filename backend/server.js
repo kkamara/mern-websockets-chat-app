@@ -36,17 +36,28 @@ const io = require("socket.io")(server, {
   },
 });
 
+const socketStorage = {};
+
 io.on("connection", socket => {
   console.log("Connected to socket.io");
+  console.log("socketStorage", socketStorage);
+  console.log("socket.id", socket.id);
 
   socket.on("setup", userData => {
+    socketStorage[socket.id] = {
+      userId: userData._id,
+      rooms: [],
+    };
+    console.log("socketStorage after setup", socketStorage);
     socket.join(userData._id);
     socket.emit("connected");
   });
 
   socket.on("join chat", room => {
+    socketStorage[socket.id].rooms.push(room);
     socket.join(room);
     console.log("User Joined Room: " + room);
+    console.log("socketStorage after join chat", socketStorage);
   });
 
   socket.on("new message", newMessageReceived => {
@@ -73,8 +84,17 @@ io.on("connection", socket => {
     room => socket.in(room).emit("stop typing")
   );
 
-  socket.off("setup", () => {
+  socket.on("disconnect", () => {
     console.log("USER DISCONNECTED");
-    // socket.leave(userData._id);
+    if (socketStorage[socket.id]) {
+      if (socketStorage[socket.id].rooms) {
+        for (const room of socketStorage[socket.id].rooms) {
+          socket.leave(room);
+        }
+      }
+      socket.leave(socketStorage[socket.id].userId);
+      delete socketStorage[socket.id];
+    }
+    console.log("socketStorage after disconnect", socketStorage);
   });
 });

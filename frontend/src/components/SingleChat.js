@@ -52,6 +52,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
+
+    return () => {
+      socket.off("connected");
+      socket.off("typing");
+      socket.off("stop typing");
+    };
   }, []);
 
   useEffect(() => {
@@ -65,6 +71,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
         setMessages([...messages, newMessageReceived]);
       }
     });
+    return () => {
+      socket.off("message received");
+    };
   });
 
   const sendMessage = async e => {
