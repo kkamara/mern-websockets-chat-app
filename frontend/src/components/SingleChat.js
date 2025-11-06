@@ -8,11 +8,16 @@ import UpdateGroupChatModal from './miscellaneous/UpdateGroupChatModal';
 import axios from 'axios';
 import './styles.css';
 import ScrollableChat from './ScrollableChat';
+import io from "socket.io-client";
+
+const ENDPOINT = "http://localhost:5000";
+var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState(null);
+  const [socketConnected, setSocketConnected] = useState(false);
 
   const {
     user,
@@ -25,6 +30,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
   useEffect(() => {
     fetchMessages();
   }, [selectedChat]);
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connected", () => setSocketConnected(true));
+  }, []);
 
   const sendMessage = async e => {
     if (e.key === "Enter" && newMessage) {
