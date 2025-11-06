@@ -53,10 +53,16 @@ io.on("connection", socket => {
     socket.emit("connected");
   });
 
-  socket.on("join chat", room => {
-    socketStorage[socket.id].rooms.push(room);
-    socket.join(room);
-    console.log("User Joined Room: " + room);
+  socket.on("join chat", data => {
+    if (!socketStorage[socket.id]) {
+      socketStorage[socket.id] = {
+        userId: data.userId,
+        rooms: [],
+      };
+    }
+    socketStorage[socket.id].rooms.push(data.chatId);
+    socket.join(data.chatId);
+    console.log("User Joined Room: " + data.chatId);
     console.log("socketStorage after join chat", socketStorage);
   });
 
