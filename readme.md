@@ -6,6 +6,7 @@
 
 This repository follows RoadsideCoder's course MERN Stack Chat App with Socket.IO Tutorial at https://www.youtube.com/playlist?list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf .
 
+For live-chat cleaning / leaving rooms, I had to apply my own logic to [server.js](https://github.com/kkamara/mern-websockets-chat-app/blob/main/backend/server.js) because the tutorial author's version was lacking (his version did not cleanup anything and actually referred to a variable that was not in scope).
 
 * [Using Postman?](#postman)
 
