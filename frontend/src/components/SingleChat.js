@@ -28,14 +28,29 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
   const toast = useToast();
 
   useEffect(() => {
-    fetchMessages();
-  }, [selectedChat]);
-
-  useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
   }, []);
+
+  useEffect(() => {
+    fetchMessages();
+
+    selectedChatCompare = selectedChat;
+  }, [selectedChat]);
+
+  useEffect(() => {
+    socket.on("message received", newMessageReceived => {
+      if (
+        !selectedChatCompare ||
+        selectedChatCompare._id !== newMessageReceived.chat._id
+      ) {
+        // give notification
+      } else {
+        setMessages([...messages, newMessageReceived]);
+      }
+    });
+  });
 
   const sendMessage = async e => {
     if (e.key === "Enter" && newMessage) {
@@ -56,6 +71,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain, }) => {
           config,
         );
         
+        socket.emit("new message", data);
         setMessages([...messages, data]);
       } catch (error) {
         toast({
